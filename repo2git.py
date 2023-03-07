@@ -78,10 +78,11 @@ def convert_to_git_submodules(manifest_file_path: str):
         branch = info.get('branch')
 
         print(name, path, url, branch, revision)
-        print()
+        # print()
+        ck_url = r'{}@{}'.format(url, revision)
 
         # 添加 Git 子模块
-        os.system(f'git submodule add -b {branch} {url} {path} --reference {revision}')
+        os.system(f'git submodule add -b {branch} --reference {ck_url} {url} {path}')
 
         # # 拉取子模块的代码
         # #os.system(f'git submodule update --init --recursive {path}')

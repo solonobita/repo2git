@@ -1,0 +1,48 @@
+[submodule "sources/base"]
+	path = sources/base
+	url = https://github.com/Freescale/fsl-community-bsp-base.git
+	branch = hardknott
+[submodule "sources/meta-browser"]
+	path = sources/meta-browser
+	url = https://github.com/OSSystems/meta-browser.git
+	branch = master
+[submodule "sources/meta-clang"]
+	path = sources/meta-clang
+	url = https://github.com/kraj/meta-clang.git
+	branch = hardknott
+[submodule "sources/meta-freescale"]
+	path = sources/meta-freescale
+	url = https://github.com/Freescale/meta-freescale.git
+	branch = hardknott
+[submodule "sources/meta-freescale-3rdparty"]
+	path = sources/meta-freescale-3rdparty
+	url = https://github.com/Freescale/meta-freescale-3rdparty.git
+	branch = hardknott
+[submodule "sources/meta-freescale-distro"]
+	path = sources/meta-freescale-distro
+	url = https://github.com/Freescale/meta-freescale-distro.git
+	branch = hardknott
+[submodule "sources/meta-nxp-demo-experience"]
+	path = sources/meta-nxp-demo-experience
+	url = https://source.codeaurora.org/external/imxsupport/meta-nxp-demo-experience.git
+	branch = imx_5.10.y
+[submodule "sources/meta-openembedded"]
+	path = sources/meta-openembedded
+	url = https://github.com/openembedded/meta-openembedded.git
+	branch = hardknott
+[submodule "sources/meta-qt5"]
+	path = sources/meta-qt5
+	url = https://github.com/meta-qt5/meta-qt5.git
+	branch = hardknott
+[submodule "sources/meta-timesys"]
+	path = sources/meta-timesys
+	url = https://github.com/TimesysGit/meta-timesys.git
+	branch = gatesgarth
+[submodule "sources/meta-virtualization"]
+	path = sources/meta-virtualization
+	url = https://git.yoctoproject.org/git/meta-virtualization.git
+	branch = hardknott
+[submodule "sources/poky"]
+	path = sources/poky
+	url = https://git.yoctoproject.org/git/poky.git
+	branch = hardknott
