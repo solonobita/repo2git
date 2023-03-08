@@ -6,6 +6,7 @@ import sys
 import xml.etree.ElementTree as ET
 import re
 
+
 # 处理生成真正的远程url, 并返回带有真正地址的repo
 def update_repo_url(projects: dict, remotes: dict):
     for name in projects.keys():
@@ -56,9 +57,8 @@ def get_repositories(manifest_file_path: str):
             remotes.update({name: fetch})
     return update_repo_url(projects, remotes)
 
+
 # 将 Repo Manifest 中的所有仓库转换为 Git 子模块
-
-
 def convert_to_git_submodules(manifest_file_path: str):
     if not check_file_exist(manifest_file_path):
         print('文件', manifest_file_path, '不存在', '退出解析... ...')
@@ -83,16 +83,16 @@ def convert_to_git_submodules(manifest_file_path: str):
             print('检出{}仓库到branch<{}>的指定revision<{}>失败, 退出中... ... ... ...'.format(
                 name, branch, revision))
             return
-        print('正在处理软链接')
-        for linkfile_cmd in linkfile_cmds:
-            print('正在执行{}'.format(linkfile_cmd))
-            if not os.system(linkfile_cmd) == 0:
-                print('执行{}失败,请手动检查!'.format(linkfile_cmd))
+        if linkfile_cmds:    
+            print('正在处理软链接')
+            for linkfile_cmd in linkfile_cmds:
+                print('正在执行{}'.format(linkfile_cmd))
+                if not os.system(linkfile_cmd) == 0:
+                    print('执行{}失败,请手动检查!'.format(linkfile_cmd))
 
         # # 提交子模块
         # os.system(f'git add {path}')
         # os.system(f'git commit -m "Add {name} submodule"')
-
     print('所有仓库检出成功！')
 
 
@@ -107,9 +107,8 @@ def check_args():
 def help():
     print('usage', sys.argv[0], r'<repo manifest path>')
 
+
 # 检测repo url 是否为映射
-
-
 def is_repo_url(url: str):
     pattern = r'^(git|https|http)://.*$'
     return re.match(pattern, url)
