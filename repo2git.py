@@ -24,7 +24,7 @@ def update_repo_url(projects: dict, remotes: dict):
     return projects
 
 
-def get_repositories(manifest_file_path: str):
+def gen_repositories(manifest_file_path: str):
     tree = ET.parse(manifest_file_path)
     root = tree.getroot()
     projects = {}
@@ -63,7 +63,7 @@ def convert_to_git_submodules(manifest_file_path: str):
     if not check_file_exist(manifest_file_path):
         print('文件', manifest_file_path, '不存在', '退出解析... ...')
         return
-    repositories = get_repositories(manifest_file_path)
+    repositories = gen_repositories(manifest_file_path)
     if not repositories:
         print('生成项目信息失败, 请检查输出信息！')
         return
@@ -76,14 +76,16 @@ def convert_to_git_submodules(manifest_file_path: str):
         linkfile_cmds = info.get('linkfile_cmds')
         print(name, path, url, branch, revision, linkfile_cmds)
         # 添加 Git 子模块
-        if os.system(f'git submodule add --force -b {branch} {url} {path}') == 0 and os.system(f'git submodule update --init --recursive {path}') == 0 and os.system(f'git -C {path} checkout {revision}') == 0:
+        if (os.system(f'git submodule add --force -b {branch} {url} {path}') == 0
+            and os.system(f'git submodule update --init --recursive {path}') == 0
+                and os.system(f'git -C {path} checkout {revision}') == 0):
             print('检出{}仓库到branch<{}>的指定revision<{}>成功'.format(
                 name, branch, revision))
         else:
             print('检出{}仓库到branch<{}>的指定revision<{}>失败, 退出中... ... ... ...'.format(
                 name, branch, revision))
             return
-        if linkfile_cmds:    
+        if linkfile_cmds:
             print('正在处理软链接')
             for linkfile_cmd in linkfile_cmds:
                 print('正在执行{}'.format(linkfile_cmd))
